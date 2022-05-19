@@ -1,0 +1,7 @@
+# Ignore all html files in the frontend dir as they'll be django templates.
+**/node_modules
+*.svg
+*.css
+*.json
+public
+.next

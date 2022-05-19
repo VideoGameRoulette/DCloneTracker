@@ -1,0 +1,48 @@
+{
+    "ladder": {
+        "softcore": "Ladder Softcore",
+        "hardcore": "Ladder Hardcore"
+    },
+    "nonladder": {
+        "softcore": "Non-Ladder Softcore",
+        "hardcore": "Non-Ladder Hardcore"
+    },
+    "d2io": {
+        "cta": "data courtesy of ",
+        "url": "diablo2.io"
+    },
+    "d2rw": {
+        "cta": "Powered By: ",
+        "url": "d2runewizard.com"
+    },
+    "media": {
+        "title": "media",
+        "twitter": {
+            "title": "Twitter",
+            "description": "Follow Me On Twitter"
+        },
+        "github": {
+            "title": "GitHub",
+            "description": "Source Code"
+        },
+        "twitch": {
+            "title": "Twitch"
+        },
+        "youtube": {
+            "title": "YouTube"
+        }
+    },
+    "language": {
+        "title": "Language",
+        "english": "English",
+        "french": "French",
+        "select": "select a language"
+    },
+    "welcome": {
+        "title": "DClone Tracker Widgets For Streams",
+        "description": "Welcome to VGR's DClone tracker widgets for twitch, youtube, and other social media platforms!",
+        "example": "Widget Examples",
+        "d2io": "diablo2.io",
+        "d2rw": "d2runewizard.com"
+    }
+}

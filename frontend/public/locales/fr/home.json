@@ -1,0 +1,48 @@
+{
+    "ladder": {
+        "softcore": "Tournoi Non-Extrême",
+        "hardcore": "Tournoi Extrême"
+    },
+    "nonladder": {
+        "softcore": "Non-Tournoi Non-Extrême",
+        "hardcore": "Non-Tournoi Extrême"
+    },
+    "d2io": {
+        "cta": "données gracieuseté de ",
+        "url": "diablo2.io"
+    },
+    "d2rw": {
+        "cta": "Alimenté Par: ",
+        "url": "d2runewizard.com"
+    },
+    "media": {
+        "title": "média",
+        "twitter": {
+            "title": "Twitter",
+            "description": "Suis moi sur Twitter"
+        },
+        "github": {
+            "title": "GitHub",
+            "description": "code source"
+        },
+        "twitch": {
+            "title": "Twitch"
+        },
+        "youtube": {
+            "title": "YouTube"
+        }
+    },
+    "language": {
+        "title": "Langue",
+        "english": "Anglaise",
+        "french": "Français",
+        "select": "sélectionnez une langue"
+    },
+    "welcome": {
+        "title": "Widgets DClone Tracker pour les flux",
+        "description": "Bienvenue dans les widgets de suivi DClone de VGR pour Twitch, YouTube et d'autres plateformes de médias sociaux!",
+        "example": "Exemples de widgets",
+        "d2io": "diablo2.io",
+        "d2rw": "d2runewizard.com"
+    }
+}
