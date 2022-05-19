@@ -12,7 +12,7 @@ const sampleData = [
     ladder: 1,
     hc: 2,
     timestamped: 1652897562,
-    reporter_id: 74355
+    reporter_id: 0
   },
   {
     progress: 3,
@@ -20,7 +20,7 @@ const sampleData = [
     ladder: 1,
     hc: 2,
     timestamped: 1652906250,
-    reporter_id: 76875
+    reporter_id: 1
   },
   {
     progress: 5,
@@ -28,7 +28,7 @@ const sampleData = [
     ladder: 1,
     hc: 2,
     timestamped: 1652897606,
-    reporter_id: 76875
+    reporter_id: 2
   }
 ];
 
