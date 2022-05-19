@@ -1,0 +1,4 @@
+exclude:
+  - Backend
+name: dclone-website
+version: 1.10.0

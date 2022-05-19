@@ -1,0 +1,32 @@
+services:
+  frontend:
+    build:
+      context: frontend
+      dockerfile: Dockerfile.local
+    volumes:
+      - ./frontend:/code
+      - /code/node_modules
+
+  backend:
+    build:
+      context: backend
+      dockerfile: Dockerfile.local
+    volumes:
+      - ./backend:/code
+      - /code/node_modules
+    depends_on:
+      - cache
+
+  cache:
+    image: redis:6
+
+  reverse-proxy:
+    depends_on:
+      - frontend
+      - backend
+    image: caddy:latest
+    ports:
+      - 3001:3001
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+version: '3.4'
