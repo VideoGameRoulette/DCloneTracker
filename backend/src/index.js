@@ -3,7 +3,7 @@ import clusterize from 'express-clusterize';
 import axios from 'axios';
 
 const app = express();
-const port = Number(process.env.PORT) || 3002;
+const port = Number(process.env.PORT) || 3001;
 
 app.use(express.json());
 
