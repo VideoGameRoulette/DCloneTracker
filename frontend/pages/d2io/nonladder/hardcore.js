@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import Image from 'next/image';
+import { useTranslation } from 'react-i18next';
 
 export default function Home() {
   const [current, setCurrent] = useState(1);
@@ -10,7 +12,7 @@ export default function Home() {
       ladder: 1,
       hc: 2,
       timestamped: 1652897562,
-      reporter_id: 74355
+      reporter_id: 74355,
     },
     {
       progress: 1,
@@ -18,7 +20,7 @@ export default function Home() {
       ladder: 1,
       hc: 2,
       timestamped: 1652906250,
-      reporter_id: 76875
+      reporter_id: 76875,
     },
     {
       progress: 1,
@@ -26,11 +28,12 @@ export default function Home() {
       ladder: 1,
       hc: 2,
       timestamped: 1652897606,
-      reporter_id: 76875
-    }
+      reporter_id: 76875,
+    },
   ]);
   const [seconds, setSeconds] = useState(0);
   const [updateTimer, setUpdateTimer] = useState(0);
+  const { t } = useTranslation(['home']);
 
   useEffect(async () => {
     if (updateTimer === 60) {
@@ -58,28 +61,30 @@ export default function Home() {
 
   const getColor = num => {
     switch (num) {
-      case "3":
-        return "text-yellow-800 border-yellow-500 border-2 bg-yellow-200";
-      case "4":
-      case "5":
-      case "6":
-        return "text-green-800 border-green-500 border-2 bg-green-200";
+      case '3':
+        return 'text-yellow-800 border-yellow-500 border-2 bg-yellow-200';
+      case '4':
+      case '5':
+      case '6':
+        return 'text-green-800 border-green-500 border-2 bg-green-200';
       default:
-        return "text-red-800 border-red-500 border-2 bg-red-200";
+        return 'text-red-800 border-red-500 border-2 bg-red-200';
     }
-  }
+  };
 
   const getDate = timestamp => {
     const date = new Date(timestamp * 1000);
-    var hours = date.getHours();
-    var h = hours > 12 ? hours - 12 : hours;
-    var minutes = "0" + date.getMinutes();
-    var seconds = "0" + date.getSeconds();
-    var ampm = hours > 12 ? "pm" : "am";
-    var formattedTime = `${date.toLocaleDateString("en-US")} ${h}:${minutes.substr(-2)}:${seconds.substr(-2)} ${ampm.toUpperCase()}`;
+    const hours = date.getHours();
+    const h = hours > 12 ? hours - 12 : hours;
+    const minutes = `0${date.getMinutes()}`;
+    const secs = `0${date.getSeconds()}`;
+    const ampm = hours > 12 ? 'pm' : 'am';
+    const formattedTime = `${date.toLocaleDateString('en-US')} ${h}:${minutes.substr(
+      -2,
+    )}:${secs.substr(-2)} ${ampm.toUpperCase()}`;
     return formattedTime;
-  }
-  const regions = ["None", "Americas", "Europe", "Asia"];
+  };
+  const regions = ['None', 'Americas', 'Europe', 'Asia'];
 
   return (
     <div className="w-full h-full flex flex-col justify-center items-center uppercase">
@@ -88,11 +93,15 @@ export default function Home() {
           key={status[current - 1].region}
           className={`${getColor(status[current - 1].progress)} p-2 rounded-md mr-1 font-bold`}
         >
-          {`${status[current - 1].progress} / 6 ${regions[status[current - 1].region]} - ${getDate(status[current - 1].timestamped)}`}
+          {`${status[current - 1].progress} / 6 ${regions[status[current - 1].region]} - ${getDate(
+            status[current - 1].timestamped,
+          )}`}
         </div>
       )}
       <div className="w-full h-auto flex justify-center items-center gap-2 text-white">
-        Data courtesy of <img src="https://diablo2.io/styles/zulu/theme/images/ui/tinylog.webp"></img> diablo2.io
+        {t('d2io.cta')}
+        <Image width={20} height={20} src="/img/d2io.webp" alt="d2io logo" />
+        {t('d2io.url')}
       </div>
     </div>
   );

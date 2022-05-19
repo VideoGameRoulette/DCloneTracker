@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useRouter } from 'next/router';
 import i18next from 'i18next';
 import { useTranslation } from 'react-i18next';
@@ -19,6 +20,22 @@ const GetLogo = r => {
     <div className="cursor-pointer md:mr-12 mr-16" onClick={() => router.push('/')}>
       <span className="sr-only">Logo</span>
       <div className="text-leet dark:text-white w-16 h-16 bg-dclone bg-cover" />
+    </div>
+  );
+};
+
+const RenderIcons = item => {
+  const { icon2 } = item;
+  if (icon2 !== null)
+    return (
+      <>
+        <item.icon />
+        <item.icon2 />
+      </>
+    );
+  return (
+    <div className="w-8 h-8 flex justify-center items-center">
+      <item.icon />
     </div>
   );
 };
@@ -120,25 +137,13 @@ const Header = () => {
   const languageNav = [
     {
       name: 'language.english',
-      code: 'en'
+      code: 'en',
     },
     {
       name: 'language.french',
-      code: 'fr'
+      code: 'fr',
     },
   ];
-
-  const RenderIcons = item => {
-    if (item.icon2 !== null) return (
-      <>
-        <item.icon />
-        <item.icon2 />
-      </>
-    );
-    return (
-      <div className="w-8 h-8 flex justify-center items-center"><item.icon /></div>
-    );
-  }
 
   return (
     <Popover className="relative bg-zinc-900 z-40 shadow-md">
@@ -179,17 +184,15 @@ const Header = () => {
                     >
                       <Popover.Panel className="absolute z-10 -ml-4 mt-3 transform px-2 w-screen max-w-md sm:px-0 lg:ml-0 lg:left-1/2 lg:-translate-x-1/2">
                         <div className="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
-                          <div
-                            className={`uppercase relative grid gap-6 bg-zinc-800 px-5 py-6 sm:gap-8 sm:p-8`}
-                          >
+                          <div className="uppercase relative grid gap-6 bg-zinc-800 px-5 py-6 sm:gap-8 sm:p-8">
                             {d2ioNav.map(item => (
-                              <Link
-                                key={item.name}
-                                href={item.href}
-                                passHref
-                              >
-                                <a className={`${styles.textColorHeader} bg-zinc-800 ${styles.colorHover} cursor-pointer p-3 flex justify-start items-center rounded-md`}>
-                                  <div className={`${styles.textColorHeader} w-16 h-16 flex justify-center items-center gap-1`}>
+                              <Link key={item.name} href={item.href} passHref>
+                                <a
+                                  className={`${styles.textColorHeader} bg-zinc-800 ${styles.colorHover} cursor-pointer p-3 flex justify-start items-center rounded-md`}
+                                >
+                                  <div
+                                    className={`${styles.textColorHeader} w-16 h-16 flex justify-center items-center gap-1`}
+                                  >
                                     {RenderIcons(item)}
                                   </div>
 
@@ -204,12 +207,16 @@ const Header = () => {
                             ))}
                           </div>
                           <div className="uppercase px-5 py-5 bg-zinc-900 space-y-6 sm:flex sm:space-y-0 sm:space-x-10 sm:px-8">
-                            <Link
-                              href="https://diablo2.io"
-                              passHref
-                            >
+                            <Link href="https://diablo2.io" passHref>
                               <a className="w-full h-auto flex flex-row justify-center items-center gap-2 text-white">
-                                {t('d2io.cta')}<img src="https://diablo2.io/styles/zulu/theme/images/ui/tinylog.webp"></img>{t('d2io.url')}
+                                {t('d2io.cta')}
+                                <Image
+                                  width={20}
+                                  height={20}
+                                  src="/img/d2io.webp"
+                                  alt="d2io logo"
+                                />
+                                {t('d2io.url')}
                               </a>
                             </Link>
                           </div>
@@ -251,17 +258,15 @@ const Header = () => {
                     >
                       <Popover.Panel className="absolute z-10 -ml-4 mt-3 transform px-2 w-screen max-w-md sm:px-0 lg:ml-0 lg:left-1/2 lg:-translate-x-1/2">
                         <div className="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
-                          <div
-                            className={`uppercase relative grid gap-6 bg-zinc-800 px-5 py-6 sm:gap-8 sm:p-8`}
-                          >
+                          <div className="uppercase relative grid gap-6 bg-zinc-800 px-5 py-6 sm:gap-8 sm:p-8">
                             {d2rwNav.map(item => (
-                              <Link
-                                key={item.name}
-                                href={item.href}
-                                passHref
-                              >
-                                <a className={`${styles.textColorHeader} bg-zinc-800 ${styles.colorHover} cursor-pointer p-3 flex justify-start items-center rounded-md`}>
-                                  <div className={`${styles.textColorHeader} w-16 h-16 flex justify-center items-center gap-1`}>
+                              <Link key={item.name} href={item.href} passHref>
+                                <a
+                                  className={`${styles.textColorHeader} bg-zinc-800 ${styles.colorHover} cursor-pointer p-3 flex justify-start items-center rounded-md`}
+                                >
+                                  <div
+                                    className={`${styles.textColorHeader} w-16 h-16 flex justify-center items-center gap-1`}
+                                  >
                                     {RenderIcons(item)}
                                   </div>
 
@@ -276,12 +281,13 @@ const Header = () => {
                             ))}
                           </div>
                           <div className="uppercase px-5 py-5 bg-zinc-900 space-y-6 sm:flex sm:space-y-0 sm:space-x-10 sm:px-8">
-                            <Link
-                              href="https://d2runewizard.com"
-                              passHref
-                            >
+                            <Link href="https://d2runewizard.com" passHref>
                               <a className="w-full h-auto flex flex-row justify-center items-center gap-2 text-white">
-                                {t('d2rw.cta')}<div className="w-4 flex justify-center"><images.RuneWizardIcon /></div>{t('d2rw.url')}
+                                {t('d2rw.cta')}
+                                <div className="w-4 flex justify-center">
+                                  <images.RuneWizardIcon />
+                                </div>
+                                {t('d2rw.url')}
                               </a>
                             </Link>
                           </div>
@@ -323,18 +329,18 @@ const Header = () => {
                     >
                       <Popover.Panel className="absolute z-10 -ml-4 mt-3 transform px-2 w-screen max-w-md sm:px-0 lg:ml-0 lg:left-1/2 lg:-translate-x-1/2">
                         <div className="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
-                          <div
-                            className={`uppercase relative grid gap-6 bg-zinc-800 px-5 py-6 sm:gap-8 sm:p-8`}
-                          >
+                          <div className="uppercase relative grid gap-6 bg-zinc-800 px-5 py-6 sm:gap-8 sm:p-8">
                             {mediaNav.map(item => (
-                              <Link
-                                key={item.name}
-                                href={item.href}
-                                passHref
-                              >
-                                <a className={`${styles.textColorHeader} bg-zinc-800 ${styles.colorHover} cursor-pointer p-3 flex justify-start items-center rounded-md`}>
-                                  <div className={`${styles.textColorHeader} w-16 h-16 flex justify-center items-center gap-1`}>
-                                    <div className="w-8 h-8 flex justify-center items-center"><item.icon /></div>
+                              <Link key={item.name} href={item.href} passHref>
+                                <a
+                                  className={`${styles.textColorHeader} bg-zinc-800 ${styles.colorHover} cursor-pointer p-3 flex justify-start items-center rounded-md`}
+                                >
+                                  <div
+                                    className={`${styles.textColorHeader} w-16 h-16 flex justify-center items-center gap-1`}
+                                  >
+                                    <div className="w-8 h-8 flex justify-center items-center">
+                                      <item.icon />
+                                    </div>
                                   </div>
 
                                   <div className="ml-4 flex flex-col items-start">
@@ -349,14 +355,16 @@ const Header = () => {
                           </div>
                           <div className="uppercase px-5 py-5 bg-zinc-900 space-y-6 sm:flex sm:space-y-0 sm:space-x-10 sm:px-8">
                             {mediaSubNav.map(item => (
-                              <Link
-                                key={item.name}
-                                href={item.href}
-                                passHref
-                              >
-                                <a className={`${styles.textColorHeader} bg-zinc-800 ${styles.colorHover} cursor-pointer p-3 flex justify-start items-center rounded-md gap-2`}>
-                                  <div className={`${styles.textColorHeader} w-8 h-8 flex justify-center items-center gap-1`}>
-                                    <div className="w-8 h-8 flex justify-center items-center"><item.icon /></div>
+                              <Link key={item.name} href={item.href} passHref>
+                                <a
+                                  className={`${styles.textColorHeader} bg-zinc-800 ${styles.colorHover} cursor-pointer p-3 flex justify-start items-center rounded-md gap-2`}
+                                >
+                                  <div
+                                    className={`${styles.textColorHeader} w-8 h-8 flex justify-center items-center gap-1`}
+                                  >
+                                    <div className="w-8 h-8 flex justify-center items-center">
+                                      <item.icon />
+                                    </div>
                                   </div>
 
                                   <div className="mx-2 flex flex-col items-start">
@@ -404,15 +412,16 @@ const Header = () => {
                     >
                       <Popover.Panel className="absolute z-10 -ml-4 mt-3 transform px-2 w-screen max-w-md sm:px-0 lg:ml-0 lg:left-1/2 lg:-translate-x-1/2">
                         <div className="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
-                          <div
-                            className={`uppercase relative grid gap-6 bg-zinc-800 px-5 py-6 sm:gap-8 sm:p-8`}
-                          >
+                          <div className="uppercase relative grid gap-6 bg-zinc-800 px-5 py-6 sm:gap-8 sm:p-8">
                             {languageNav.map(item => (
                               <button
+                                type="button"
                                 key={item.name}
                                 onClick={() => i18next.changeLanguage(item.code)}
                               >
-                                <div className={`${styles.textColorHeader} bg-zinc-800 ${styles.colorHover} cursor-pointer p-3 flex justify-start items-center rounded-md`}>
+                                <div
+                                  className={`${styles.textColorHeader} bg-zinc-800 ${styles.colorHover} cursor-pointer p-3 flex justify-start items-center rounded-md`}
+                                >
                                   <div className="ml-4 flex flex-col items-start">
                                     <p className="text-base font-medium">{t(item.name)}</p>
                                   </div>

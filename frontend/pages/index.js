@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import Header from 'components/Header';
+import Image from 'next/image';
+import Header from 'components/header';
 import { useTranslation } from 'react-i18next';
-import { SectionTitle, SectionDesc, SectionPara, Spacer } from 'components/global';
+import { SectionTitle, SectionDesc, Spacer } from 'components/global';
 import * as images from 'components/images';
 
 const sampleData = [
@@ -12,7 +13,7 @@ const sampleData = [
     ladder: 1,
     hc: 2,
     timestamped: 1652897562,
-    reporter_id: 0
+    reporter_id: 0,
   },
   {
     progress: 3,
@@ -20,7 +21,7 @@ const sampleData = [
     ladder: 1,
     hc: 2,
     timestamped: 1652906250,
-    reporter_id: 1
+    reporter_id: 1,
   },
   {
     progress: 5,
@@ -28,8 +29,8 @@ const sampleData = [
     ladder: 1,
     hc: 2,
     timestamped: 1652897606,
-    reporter_id: 2
-  }
+    reporter_id: 2,
+  },
 ];
 
 const sampleData2 = [
@@ -42,12 +43,12 @@ const sampleData2 = [
     region: 'Asia',
     lastReportedBy: {
       uid: '3EZk40IL97hg9B8PCqLm7QtuQl53',
-      displayName: 'Sune Schmidt-Hylleborg'
+      displayName: 'Sune Schmidt-Hylleborg',
     },
     lastUpdate: {
       seconds: 1652904110,
-      nanoseconds: 920000000
-    }
+      nanoseconds: 920000000,
+    },
   },
   {
     server: 'ladderSoftcoreAmericas',
@@ -58,12 +59,12 @@ const sampleData2 = [
     region: 'Americas',
     lastReportedBy: {
       displayName: 'Marcin Brzezinski',
-      uid: '82Avm6XgfKhyHRe7qof4WbjPJSA2'
+      uid: '82Avm6XgfKhyHRe7qof4WbjPJSA2',
     },
     lastUpdate: {
       seconds: 1652861470,
-      nanoseconds: 1000000
-    }
+      nanoseconds: 1000000,
+    },
   },
   {
     server: 'ladderSoftcoreEurope',
@@ -74,13 +75,13 @@ const sampleData2 = [
     region: 'Europe',
     lastReportedBy: {
       uid: '2G1CWZt8ycSCjRsC2BXmvRXx9pz1',
-      displayName: 'Hodor'
+      displayName: 'Hodor',
     },
     lastUpdate: {
       seconds: 1652882515,
-      nanoseconds: 591000000
-    }
-  }
+      nanoseconds: 591000000,
+    },
+  },
 ];
 
 export default function Home() {
@@ -103,27 +104,29 @@ export default function Home() {
   const getColor = num => {
     switch (num) {
       case 3:
-        return "text-yellow-800 border-yellow-500 border-2 bg-yellow-200";
+        return 'text-yellow-800 border-yellow-500 border-2 bg-yellow-200';
       case 4:
       case 5:
       case 6:
-        return "text-green-800 border-green-500 border-2 bg-green-200";
+        return 'text-green-800 border-green-500 border-2 bg-green-200';
       default:
-        return "text-red-800 border-red-500 border-2 bg-red-200";
+        return 'text-red-800 border-red-500 border-2 bg-red-200';
     }
-  }
+  };
 
   const getDate = timestamp => {
     const date = new Date(timestamp * 1000);
-    var hours = date.getHours();
-    var h = hours > 12 ? hours - 12 : hours;
-    var minutes = "0" + date.getMinutes();
-    var seconds = "0" + date.getSeconds();
-    var ampm = hours > 12 ? "pm" : "am";
-    var formattedTime = `${date.toLocaleDateString("en-US")} ${h}:${minutes.substr(-2)}:${seconds.substr(-2)} ${ampm.toUpperCase()}`;
+    const hours = date.getHours();
+    const h = hours > 12 ? hours - 12 : hours;
+    const minutes = `0${date.getMinutes()}`;
+    const secs = `0${date.getSeconds()}`;
+    const ampm = hours > 12 ? 'pm' : 'am';
+    const formattedTime = `${date.toLocaleDateString('en-US')} ${h}:${minutes.substr(
+      -2,
+    )}:${secs.substr(-2)} ${ampm.toUpperCase()}`;
     return formattedTime;
-  }
-  const regions = ["None", "Americas", "Europe", "Asia"];
+  };
+  const regions = ['None', 'Americas', 'Europe', 'Asia'];
 
   return (
     <div className="dark w-full h-full uppercase">
@@ -131,9 +134,7 @@ export default function Home() {
         <div className="w-screen h-auto">
           <Header />
         </div>
-        <div
-          className={`bg-welcome bg-cover w-screen h-auto overflow-x-hidden overflow-y-auto`}
-        >
+        <div className="bg-welcome bg-cover w-screen h-auto overflow-x-hidden overflow-y-auto">
           <Spacer />
           <div className="md:container mx-auto w-full h-auto">
             <div className="h-auto md:mx-10 mx-3 flex flex-col justify-center items-center rounded-2xl ">
@@ -149,17 +150,20 @@ export default function Home() {
                     <Spacer />
                     <div
                       key={sampleData[current - 1].region}
-                      className={`${getColor(sampleData[current - 1].progress)} p-2 rounded-md mr-1 font-bold`}
+                      className={`${getColor(
+                        sampleData[current - 1].progress,
+                      )} p-2 rounded-md mr-1 font-bold`}
                     >
-                      {`${sampleData[current - 1].progress} / 6 ${regions[sampleData[current - 1].region]} - ${getDate(sampleData[current - 1].timestamped)}`}
+                      {`${sampleData[current - 1].progress} / 6 ${
+                        regions[sampleData[current - 1].region]
+                      } - ${getDate(sampleData[current - 1].timestamped)}`}
                     </div>
-                    <Link
-                      href="https://diablo2.io/"
-                      passHref
-                    >
+                    <Link href="https://diablo2.io/" passHref>
                       <a>
                         <div className="w-auto h-auto flex justify-center items-center gap-2 text-white bg-zinc-900 p-4 rounded-md mt-1">
-                          {t('d2io.cta')}<img src="https://diablo2.io/styles/zulu/theme/images/ui/tinylog.webp"></img>{t('d2io.url')}
+                          {t('d2io.cta')}
+                          <Image width={20} height={20} src="/img/d2io.webp" alt="d2io logo" />
+                          {t('d2io.url')}
                         </div>
                       </a>
                     </Link>
@@ -169,20 +173,25 @@ export default function Home() {
                     <Spacer />
                     <div
                       key={sampleData2[current - 1].region}
-                      className={`${getColor(sampleData2[current - 1].progress)} p-2 rounded-md mr-1 font-bold`}
+                      className={`${getColor(
+                        sampleData2[current - 1].progress,
+                      )} p-2 rounded-md mr-1 font-bold`}
                     >
-                      {`${sampleData2[current - 1].progress} / 6 ${sampleData2[current - 1].region} - ${getDate(sampleData2[current - 1].lastUpdate.seconds)}`}
+                      {`${sampleData2[current - 1].progress} / 6 ${
+                        sampleData2[current - 1].region
+                      } - ${getDate(sampleData2[current - 1].lastUpdate.seconds)}`}
                     </div>
                     <div className="w-full h-auto flex justify-center items-center gap-2 text-white">
                       {sampleData2[current - 1].message}
                     </div>
-                    <Link
-                      href="https://d2runewizard.com/"
-                      passHref
-                    >
+                    <Link href="https://d2runewizard.com/" passHref>
                       <a>
                         <div className="w-auto h-auto flex justify-center items-center gap-2 text-white bg-zinc-900 p-4 rounded-md">
-                          {t('d2rw.cta')}<div className="w-4 flex justify-center"><images.RuneWizardIcon /></div>{t('d2rw.url')}
+                          {t('d2rw.cta')}
+                          <div className="w-4 flex justify-center">
+                            <images.RuneWizardIcon />
+                          </div>
+                          {t('d2rw.url')}
                         </div>
                       </a>
                     </Link>
